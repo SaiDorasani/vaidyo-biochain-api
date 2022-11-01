@@ -5,5 +5,6 @@ import lombok.Data;
 @Data
 public class BioblockDto {
     String userId;
-    String data; //type:(any one of: healthIndex, vaccineInfo, labOrder, prescriptions
+    String key; //type:(any one of: healthIndex, vaccineInfo, labOrder, prescriptions
+    String value;
 }

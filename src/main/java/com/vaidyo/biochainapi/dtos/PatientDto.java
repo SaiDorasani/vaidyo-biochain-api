@@ -14,6 +14,10 @@ public class PatientDto {
     String dateOfBirth;
     String userId;
     String gender;
+    String weight;
+    String height;
+    String bp;
+    String oxygen;
     public static List<PatientDto> toPatientDtoList(List<UserData> userDataList) {
         List<PatientDto> patientDtoList = new ArrayList<>();
        userDataList.forEach(userData -> {
@@ -24,6 +28,10 @@ public class PatientDto {
            patientDto.userId = userData.getUserId();
            patientDto.username = userData.getUsername();
            patientDto.gender = userData.getGender();
+           patientDto.weight = userData.getWeight();
+           patientDto.height = userData.getHeight();
+           patientDto.bp = userData.getBp();
+           patientDto.oxygen = userData.getOxygen();
            patientDtoList.add(patientDto);
        });
         return patientDtoList;

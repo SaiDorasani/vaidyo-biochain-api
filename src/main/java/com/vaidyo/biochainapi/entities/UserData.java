@@ -11,4 +11,8 @@ public class UserData {
     String dateOfBirth;
     String password;
     String gender;
+    String weight;
+    String height;
+    String bp;
+    String oxygen;
 }
