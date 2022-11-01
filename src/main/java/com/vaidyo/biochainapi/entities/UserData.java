@@ -10,4 +10,5 @@ public class UserData {
     String lastName;
     String dateOfBirth;
     String password;
+    String gender;
 }

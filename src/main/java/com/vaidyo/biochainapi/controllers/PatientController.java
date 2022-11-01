@@ -4,8 +4,10 @@ import com.vaidyo.biochainapi.dtos.PatientDto;
 import com.vaidyo.biochainapi.entities.UserData;
 import com.vaidyo.biochainapi.entities.UserList;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,5 +34,17 @@ public class PatientController {
 //        biochainList.add(bioblock);
 //        return ResponseEntity.ok("Bio Block added successfully");
 //    }
+
+
+
+    @GetMapping("biochain/patients/{patientUsername}")
+    public List<PatientDto> biochainGetProviderPatients(@PathVariable String patientUsername){
+        //find userdata by username
+        UserData userData = UserList.users.get(patientUsername);
+        List<UserData> userDataList = new ArrayList<>();
+        userDataList.add(userData);
+        List<PatientDto> patientDtoList = PatientDto.toPatientDtoList(userDataList);
+        return patientDtoList;
+    }
 }
 

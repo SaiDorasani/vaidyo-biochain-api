@@ -13,15 +13,17 @@ public class PatientDto {
     String lastName;
     String dateOfBirth;
     String userId;
+    String gender;
     public static List<PatientDto> toPatientDtoList(List<UserData> userDataList) {
         List<PatientDto> patientDtoList = new ArrayList<>();
        userDataList.forEach(userData -> {
            PatientDto patientDto = new PatientDto();
            patientDto.firstName = userData.getFirsName();
-           patientDto.lastName = userData.getLastName();;
+           patientDto.lastName = userData.getLastName();
            patientDto.dateOfBirth = userData.getDateOfBirth();
            patientDto.userId = userData.getUserId();
            patientDto.username = userData.getUsername();
+           patientDto.gender = userData.getGender();
            patientDtoList.add(patientDto);
        });
         return patientDtoList;

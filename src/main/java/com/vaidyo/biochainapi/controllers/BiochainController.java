@@ -39,5 +39,20 @@ public class BiochainController {
         biochainList.add(bioblock);
         return ResponseEntity.ok("Bio Block added successfully");
     }
+
+    @PostMapping("patients/biochain/bioblocks/create")
+    public ResponseEntity<String> biochainPatientsCreateBlock(@RequestBody BioblockDto bioblockDto){
+
+        String bioblockData = bioblockDto.toString();
+        String previousHash = "0";
+        List<Bioblock> biochainList = Biochain.getInstance().getBlockchain();
+        if(biochainList.size() > 0) {
+            previousHash = biochainList.get(biochainList.size() - 1).getHash();
+        }
+        //Create blockchain block
+        Bioblock bioblock = new Bioblock(bioblockData, previousHash, Instant.now().toEpochMilli());
+        biochainList.add(bioblock);
+        return ResponseEntity.ok("Bio Block added successfully");
+    }
 }
 

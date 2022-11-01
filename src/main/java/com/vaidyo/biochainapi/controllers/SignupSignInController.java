@@ -28,8 +28,9 @@ public class SignupSignInController {
         userData.setUsername(biochainUser.getUsername());
         userData.setPassword(biochainUser.getPassword());
         userData.setFirsName(biochainUser.getFirstName());
-        userData.setFirsName(biochainUser.getLastName());
+        userData.setLastName(biochainUser.getLastName());
         userData.setDateOfBirth(biochainUser.getDateOfBirth());
+        userData.setGender(biochainUser.getGender());
         UserList.users.put(biochainUser.getUsername(),  userData);
         return ResponseEntity.ok("Signup Successful" + ", - User created with UserId: " + userData.getUserId());
     }
