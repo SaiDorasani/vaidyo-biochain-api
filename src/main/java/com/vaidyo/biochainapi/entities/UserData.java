@@ -10,4 +10,9 @@ public class UserData {
     String lastName;
     String dateOfBirth;
     String password;
+    String gender;
+    String weight;
+    String height;
+    String bp;
+    String oxygen;
 }

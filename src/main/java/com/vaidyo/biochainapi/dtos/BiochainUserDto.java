@@ -8,4 +8,5 @@ public class BiochainUserDto {
     String firstName;
     String lastName;
     String dateOfBirth;
+    String gender;
 }

@@ -1,6 +1,7 @@
 package com.vaidyo.biochainapi.controllers;
 
 import com.vaidyo.biochainapi.entities.UserData;
+import com.vaidyo.biochainapi.entities.UserList;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,30 +11,34 @@ import java.util.HashMap;
 @RestController()
 public class SignupSignInController {
 
-    HashMap<String, UserData> users = new HashMap<>();
+//    public static class UserList {
+//        public static HashMap<String, UserData> users = new HashMap<>();
+//    }
+//
 
     @PostMapping("biochain/signup")
     public ResponseEntity<String> biochainSignup(@RequestBody BiochainUserDto biochainUser){
 
-        if(users.get(biochainUser.getUsername()) != null){
+        if(UserList.users.get(biochainUser.getUsername()) != null){
             return ResponseEntity.badRequest().body("User already exists");
         }
         UserData userData = new UserData();
-        int userId = users.size() + 1;
+        int userId = UserList.users.size() + 1;
         userData.setUserId("BCU-" + userId );
         userData.setUsername(biochainUser.getUsername());
         userData.setPassword(biochainUser.getPassword());
         userData.setFirsName(biochainUser.getFirstName());
-        userData.setFirsName(biochainUser.getLastName());
-        userData.setFirsName(biochainUser.getDateOfBirth());
-        users.put(biochainUser.getUsername(),  userData);
+        userData.setLastName(biochainUser.getLastName());
+        userData.setDateOfBirth(biochainUser.getDateOfBirth());
+        userData.setGender(biochainUser.getGender());
+        UserList.users.put(biochainUser.getUsername(),  userData);
         return ResponseEntity.ok("Signup Successful" + ", - User created with UserId: " + userData.getUserId());
     }
 
     @PostMapping("biochain/signin")
     public ResponseEntity<String> biochainSignIn(@RequestBody BiochainUserDto biochainUser){
 
-        if(users.get(biochainUser.getUsername()) != null && users.get(biochainUser.getUsername()).getPassword().equals(biochainUser.getPassword())){
+        if(UserList.users.get(biochainUser.getUsername()) != null && UserList.users.get(biochainUser.getUsername()).getPassword().equals(biochainUser.getPassword())){
             return ResponseEntity.ok("Login successful");
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
